@@ -1,12 +1,16 @@
 # interview-plugin
 
-A Claude Code plugin for interactive spec interviews and Pushover notifications.
+A Claude Code plugin for interactive interviews to gather requirements and refine specifications. Supports spec interviews, PRD interviews, and includes Pushover notifications for session completion alerts.
 
 ## Features
 
-### Interview Commands
+### Spec Interviews
 - `/interview` - Interactive spec interview for gathering requirements
 - `/reinterview` - Interview for changes/additions to an existing spec
+
+### PRD Interviews
+- `/interview-prd` - Create a new Product Requirements Document (PRD) through adaptive interview
+- `/reinterview-prd` - Refine existing PRD through interview about changes
 
 ### Pushover Notifications
 - Automatic notifications when Claude Code sessions complete
@@ -16,6 +20,62 @@ A Claude Code plugin for interactive spec interviews and Pushover notifications.
 
 1. Clone this repository to your local plugins directory
 2. Enable the plugin in Claude Code settings
+
+## Usage
+
+### Spec Interviews
+
+#### /interview
+
+Launch an interactive interview session to gather requirements for a new specification.
+
+```bash
+/interview docs/spec.md
+```
+
+#### /reinterview
+
+Interview for changes and additions to an existing specification.
+
+```bash
+/reinterview docs/spec.md
+```
+
+### PRD Interviews
+
+#### /interview-prd
+
+Create a new Product Requirements Document (PRD) through adaptive interview. Covers problem statement, proposed solution, success metrics, and key requirements.
+
+```bash
+/interview-prd docs/prd.md
+```
+
+The interview uses an adaptive questioning approach - starting broad and drilling deeper based on your responses.
+
+**PRD Structure:**
+- Problem Statement: What problem are we solving and for whom?
+- Proposed Solution: Product vision, core features, differentiation
+- Success Metrics: Primary and secondary metrics, targets
+- Key Requirements: Functional, non-functional, and technical constraints
+
+#### /reinterview-prd
+
+Refine an existing PRD through interview about changes, additions, and updates. Focuses only on areas that need changes.
+
+```bash
+/reinterview-prd docs/prd.md
+```
+
+### Pushover Notifications
+
+#### /pushover-test
+
+Test Pushover notification delivery to verify credentials are configured correctly.
+
+```bash
+/pushover-test
+```
 
 ## Pushover Setup
 
@@ -46,16 +106,6 @@ export PUSHOVER_USER_KEY="your_user_key"
 export PUSHOVER_API_KEY="your_api_token"
 ```
 
-### Testing
-
-Test your Pushover setup:
-
-```bash
-/pushover-test
-```
-
-This sends a test notification to verify your credentials are correct.
-
 ### How It Works
 
 - When a Claude Code session ends, a Stop hook triggers
@@ -83,20 +133,6 @@ This sends a test notification to verify your credentials are correct.
 
 The hook is designed to fail silently if credentials are missing. This ensures the plugin doesn't interfere with normal operation.
 
-## Commands
-
-### /interview
-
-Launch an interactive interview session to gather requirements for a new specification.
-
-### /reinterview
-
-Interview for changes and additions to an existing specification.
-
-### /pushover-test
-
-Test Pushover notification delivery to verify credentials are configured correctly.
-
 ## Hooks
 
 ### Stop Hook
@@ -113,15 +149,20 @@ Triggers when a Claude Code session completes. Sends a Pushover notification wit
 ```
 interview-plugin/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
+│   ├── plugin.json          # Plugin manifest
+│   └── marketplace.json     # Marketplace configuration
 ├── commands/                 # Slash commands
-│   ├── interview.md
-│   ├── reinterview.md
-│   └── pushover-test.md
+│   ├── interview.md         # /interview
+│   ├── reinterview.md       # /reinterview
+│   ├── interview-prd.md     # /interview-prd
+│   ├── reinterview-prd.md   # /reinterview-prd
+│   └── pushover-test.md     # /pushover-test
 ├── hooks/                    # Event handlers
 │   ├── hooks.json
 │   └── scripts/
 │       └── stop-pushover.sh
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
