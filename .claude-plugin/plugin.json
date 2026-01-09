@@ -1,0 +1,7 @@
+{
+  "name": "interview-plugin",
+  "description": "Interactive spec interview commands for gathering requirements and refining specifications",
+  "author": {
+    "name": "jingrongong"
+  }
+}

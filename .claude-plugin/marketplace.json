@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "interview-plugin",
+  "description": "Interactive spec interview commands for gathering requirements and refining specifications",
+  "owner": {
+    "name": "jingrongong"
+  },
+  "plugins": [
+    {
+      "name": "interview-plugin",
+      "description": "Interactive spec interview commands for gathering requirements and refining specifications",
+      "version": "1.0.0",
+      "author": {
+        "name": "jingrongong"
+      },
+      "source": ".",
+      "category": "productivity"
+    }
+  ]
+}
