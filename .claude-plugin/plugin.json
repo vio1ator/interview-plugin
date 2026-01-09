@@ -1,6 +1,7 @@
 {
   "name": "interview-plugin",
-  "description": "Interactive spec interview commands for gathering requirements and refining specifications",
+  "version": "0.2.0",
+  "description": "Interactive spec interview commands for gathering requirements and refining specifications. Includes Pushover notifications for session completion alerts.",
   "author": {
     "name": "jingrongong"
   }
